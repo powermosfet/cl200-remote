@@ -25,13 +25,13 @@ void setup() {
              .OnAction(remote::CHANNEL2,  [](){ relayBoard.Activate(remote::RelayBoard::CHANNEL2);    })
              .OnAction(remote::CHANNEL3,  [](){ relayBoard.Activate(remote::RelayBoard::CHANNEL3);    })
              .OnAction(remote::CHANNEL4,  [](){ relayBoard.Activate(remote::RelayBoard::CHANNEL4);    })
-             .OnAction(remote::TAPEMON,   [](){ relayBoard.ToggleTapeMonitor(); });
+             .OnAction(remote::TAPEMON,   [](){ relayBoard.ToggleTapeMonitor();                       });
 
   ch1Button.OnEdge(RISING,  [](){ relayBoard.Activate(remote::RelayBoard::CHANNEL1);    });
   ch2Button.OnEdge(RISING,  [](){ relayBoard.Activate(remote::RelayBoard::CHANNEL2);    });
   ch3Button.OnEdge(RISING,  [](){ relayBoard.Activate(remote::RelayBoard::CHANNEL3);    });
   ch4Button.OnEdge(RISING,  [](){ relayBoard.Activate(remote::RelayBoard::CHANNEL4);    });
-  tapeButton.OnEdge(RISING,  [](){ relayBoard.ToggleTapeMonitor(); });
+  tapeButton.OnEdge(RISING, [](){ relayBoard.ToggleTapeMonitor();                       });
 }
 
 void loop() {
