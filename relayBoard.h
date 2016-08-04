@@ -6,11 +6,10 @@
 
 namespace remote {
   class RelayBoard {
-    Config* config;
-    OutPin ch1Pin;
-    OutPin ch2Pin;
-    OutPin ch3Pin;
-    OutPin ch4Pin;
+    OutPin ch1LedPin;
+    OutPin relay1Pin;
+    OutPin relay2Pin;
+    OutPin relay3Pin;
     OutPin tapePin;
     
     public:

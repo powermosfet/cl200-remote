@@ -2,32 +2,29 @@
 
 namespace remote {
   RelayBoard::RelayBoard(Config& config) :
-                         ch1Pin(config.CH1_PIN),
-                         ch2Pin(config.CH2_PIN),
-                         ch3Pin(config.CH3_PIN),
-                         ch4Pin(config.CH4_PIN),
+                         ch1LedPin(config.CH1_LED_PIN),
+                         relay1Pin(config.RELAY1_PIN),
+                         relay2Pin(config.RELAY2_PIN),
+                         relay3Pin(config.RELAY3_PIN),
                          tapePin(config.TAPE_PIN) {
-    this->config = &config;
+    this->tapePin.Set(LOGIC_LOW);
+    this->Activate(CHANNEL1);
   }
   
   void RelayBoard::Activate(Channel channel) {
-    ch1Pin.Set(HIGH_Z);
-    ch2Pin.Set(HIGH_Z);
-    ch3Pin.Set(HIGH_Z);
-    ch4Pin.Set(HIGH_Z);
-    switch(channel) {
-      case CHANNEL1:
-        this->ch1Pin.Set(LOGIC_LOW);
-        break;
-      case CHANNEL2:
-        this->ch2Pin.Set(LOGIC_LOW);
-        break;
-      case CHANNEL3:
-        this->ch3Pin.Set(LOGIC_LOW);
-        break;
+    this->relay1Pin.Set(LOGIC_LOW);
+    this->relay2Pin.Set(LOGIC_LOW);
+    this->relay3Pin.Set(LOGIC_LOW);
+    this->ch1LedPin.Set(LOGIC_LOW);
+
+    switch(channel) { //fall-through is intentional
       case CHANNEL4:
-        this->ch4Pin.Set(LOGIC_LOW);
-        break;
+        this->ch1LedPin.Set(HIGH_Z);
+        this->relay3Pin.Set(HIGH_Z);
+      case CHANNEL3:
+        this->relay2Pin.Set(HIGH_Z);
+      case CHANNEL2:
+        this->relay1Pin.Set(HIGH_Z);
     }
   }
   
