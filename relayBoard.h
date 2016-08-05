@@ -12,11 +12,14 @@ namespace remote {
     OutPin relay3Pin;
     OutPin tapePin;
     
+    void ClearOutputs();
+
     public:
-      enum Channel { CHANNEL1, CHANNEL2, CHANNEL3, CHANNEL4 };
-  
       RelayBoard(Config&);
-      void Activate(Channel);
+      void ActivateChannel1();
+      void ActivateChannel2();
+      void ActivateChannel3();
+      void ActivateChannel4();
       void ToggleTapeMonitor();
   };
 }
