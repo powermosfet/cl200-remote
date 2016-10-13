@@ -21,6 +21,8 @@ namespace remote {
       void ActivateChannel3();
       void ActivateChannel4();
       void ToggleTapeMonitor();
+      void NextChannel();
+      void PrevChannel();
   };
 }
 

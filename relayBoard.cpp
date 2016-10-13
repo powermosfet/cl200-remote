@@ -42,5 +42,34 @@ namespace remote {
     LogicLevel oldLevel = this->tapePin.Get();
     LogicLevel newLevel = oldLevel == LOGIC_LOW? HIGH_Z : LOGIC_LOW;
     this->tapePin.Set(newLevel);
+    this->SetTape(!this->config->tapeState);
+  }
+
+  void RelayBoard::PrevChannel() {
+    switch(this->config->currentChannel) {
+      case 2:
+        this->ActivateChannel1();
+        break;
+      case 3:
+        this->ActivateChannel2();
+        break;
+      case 4:
+        this->ActivateChannel3();
+        break;
+    }
+  }
+
+  void RelayBoard::NextChannel() {
+    switch(this->config->currentChannel) {
+      case 1:
+        this->ActivateChannel2();
+        break;
+      case 2:
+        this->ActivateChannel3();
+        break;
+      case 3:
+        this->ActivateChannel4();
+        break;
+    }
   }
 }

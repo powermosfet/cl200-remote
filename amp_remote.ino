@@ -25,7 +25,9 @@ void setup() {
              .OnAction(remote::CHANNEL2,  [](){ relayBoard.ActivateChannel2();  })
              .OnAction(remote::CHANNEL3,  [](){ relayBoard.ActivateChannel3();  })
              .OnAction(remote::CHANNEL4,  [](){ relayBoard.ActivateChannel4();  })
-             .OnAction(remote::TAPEMON,   [](){ relayBoard.ToggleTapeMonitor(); });
+             .OnAction(remote::TAPEMON,   [](){ relayBoard.ToggleTapeMonitor(); })
+             .OnAction(remote::UP,        [](){ relayBoard.NextChannel();       })
+             .OnAction(remote::DOWN,      [](){ relayBoard.PrevChannel();       });
 
   ch1Button.OnEdge(RISING,  [](){ relayBoard.ActivateChannel1();  });
   ch2Button.OnEdge(RISING,  [](){ relayBoard.ActivateChannel2();  });
