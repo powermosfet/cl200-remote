@@ -9,7 +9,7 @@ namespace remote {
     LogicLevel level;
     
     public:
-      OutPin(int);
+      OutPin(int, LogicLevel);
       void Set(LogicLevel);
       LogicLevel Get();
   };

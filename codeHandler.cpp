@@ -6,27 +6,44 @@ namespace remote {
     this->config = &config;
   }
   
+  void CodeHandler::LogFunction(char* fun) {
+    Serial.print("Code mathces function ");
+    Serial.println(fun);
+  }
+  
   void CodeHandler::HandleCode(unsigned int code) {
+    Serial.print("Handle code '");
+    Serial.print(code, HEX);
+    Serial.println("':");
     if(code == this->config->ch1Code) {
-        this->PerformAction(CHANNEL1);
+      LogFunction("CHANNEL1");
+      this->PerformAction(CHANNEL1);
     } else if(code == this->config->ch2Code) {
-        this->PerformAction(CHANNEL2);
+      LogFunction("CHANNEL2");
+      this->PerformAction(CHANNEL2);
     } else if(code == this->config->ch3Code) {
-        this->PerformAction(CHANNEL3);
+      LogFunction("CHANNEL3");
+      this->PerformAction(CHANNEL3);
     } else if(code == this->config->ch4Code) {
-        this->PerformAction(CHANNEL4);
+      LogFunction("CHANNEL4");
+      this->PerformAction(CHANNEL4);
     } else if(code == this->config->tapeCode) {
-        this->PerformAction(TAPEMON);
+      LogFunction("TAPE");
+      this->PerformAction(TAPEMON);
     } else if(code == this->config->upCode) {
-        this->PerformAction(UP);
+      LogFunction("UP");
+      this->PerformAction(UP);
     } else if(code == this->config->downCode) {
-        this->PerformAction(DOWN);
+      LogFunction("DOWN");
+      this->PerformAction(DOWN);
     }
   }
 
   void CodeHandler::PerformAction(Action action) {
     ActionCallback maybeCallback = this->callbacks[action];
+    Serial.println("Looking for ir code callback");
     if(maybeCallback) {
+      Serial.println("Found it!");
       maybeCallback();
     }
   }

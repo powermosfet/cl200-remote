@@ -6,6 +6,7 @@
 
 namespace remote {
   class RelayBoard {
+    Config* config;
     OutPin ch1LedPin;
     OutPin relay1Pin;
     OutPin relay2Pin;
@@ -13,6 +14,7 @@ namespace remote {
     OutPin tapePin;
     
     void ClearOutputs();
+    void SetTape(bool);
 
     public:
       RelayBoard(Config&);

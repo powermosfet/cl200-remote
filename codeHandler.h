@@ -11,6 +11,7 @@ namespace remote {
       Config* config;
       ActionCallback callbacks[ACTION_COUNT];
 
+      void LogFunction(char*);
       void PerformAction(Action);
     
     public:

@@ -17,6 +17,7 @@ namespace remote {
 
   Remote& Remote::Update(){
     if (this->irrecv.decode(&this->results)) {
+      Serial.println("we got ir data");
       this->callback(this->results.value);
       this->irrecv.resume(); // Receive the next value
     }

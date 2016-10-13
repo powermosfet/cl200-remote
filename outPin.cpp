@@ -3,9 +3,9 @@
 #include "outPin.h"
 
 namespace remote {
-  OutPin::OutPin(int pin) {
+  OutPin::OutPin(int pin, LogicLevel initialState) {
     this->pin = pin;
-    this->Set(HIGH_Z);
+    this->Set(initialState);
   }
 
   LogicLevel OutPin::Get() {
@@ -17,6 +17,7 @@ namespace remote {
     switch(level) {
       case HIGH_Z:
         pinMode(this->pin, INPUT);
+        digitalWrite(this->pin, LOW);
         break;
       case LOGIC_LOW:
         pinMode(this->pin, OUTPUT);

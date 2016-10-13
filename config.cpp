@@ -6,7 +6,19 @@ namespace remote {
   }
 
   Config& Config::Load() {
-    EEPROM.get(0x0000, *this);
+    Config loadedConf;
+    EEPROM.get(0x0000, loadedConf);
+
+    this->currentChannel = loadedConf.currentChannel;
+    this->tapeState = loadedConf.tapeState;
+    
+    this->ch1Code  = 0xFF30CF; //Hardcode IR codes for now
+    this->ch2Code  = 0xFF18E7;
+    this->ch3Code  = 0xFF7A85;
+    this->ch4Code  = 0xFF10EF;
+    this->tapeCode = 0xFF52AD;
+    this->upCode   = 0xFFE21D;
+    this->downCode = 0xFFA25D;
     return *this;
   }
 
@@ -53,6 +65,18 @@ namespace remote {
   
   Config& Config::SetDownCode(unsigned int code){
     this->downCode = code;
+    this->Save();
+    return *this;
+  }
+
+  Config& Config::SetCurrentChannel(unsigned int channel){
+    this->currentChannel = channel;
+    this->Save();
+    return *this;
+  }
+
+  Config& Config::SetTapeState(bool tapeState){
+    this->tapeState = tapeState;
     this->Save();
     return *this;
   }
