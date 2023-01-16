@@ -16,8 +16,8 @@ remote::InPin       ch4Button(config.CH4_BUTTON_PIN);
 remote::InPin       tapeButton(config.TAPE_BUTTON_PIN);
 
 void setup() {
-  Serial.begin(9600);
   config.Load();
+  relayBoard.ReadConfig();
 
   remoteSensor.Initialize()
               .OnData([](unsigned int code){ codeHandler.HandleCode(code); });
@@ -30,11 +30,11 @@ void setup() {
              .OnAction(remote::UP,        [](){ relayBoard.NextChannel();       })
              .OnAction(remote::DOWN,      [](){ relayBoard.PrevChannel();       });
 
-  ch1Button.OnEdge(RISING,  [](){ Serial.println("Button1"); relayBoard.ActivateChannel1();  });
-  ch2Button.OnEdge(RISING,  [](){ Serial.println("Button2"); relayBoard.ActivateChannel2();  });
-  ch3Button.OnEdge(RISING,  [](){ Serial.println("Button3"); relayBoard.ActivateChannel3();  });
-  ch4Button.OnEdge(RISING,  [](){ Serial.println("Button4"); relayBoard.ActivateChannel4();  });
-  tapeButton.OnEdge(RISING, [](){ Serial.println("Tape"); relayBoard.ToggleTapeMonitor(); });
+  ch1Button.OnEdge(RISING,  [](){ relayBoard.ActivateChannel1();  });
+  ch2Button.OnEdge(RISING,  [](){ relayBoard.ActivateChannel2();  });
+  ch3Button.OnEdge(RISING,  [](){ relayBoard.ActivateChannel3();  });
+  ch4Button.OnEdge(RISING,  [](){ relayBoard.ActivateChannel4();  });
+  tapeButton.OnEdge(RISING, [](){ relayBoard.ToggleTapeMonitor(); });
 }
 
 void loop() {

@@ -23,7 +23,8 @@ namespace remote {
   }
 
   Config& Config::Save() {
-    EEPROM.put(0x0000, *this);
+    Config copy = *this;
+    EEPROM.put(0x0000, copy);
     return *this;
   }
 

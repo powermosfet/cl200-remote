@@ -18,6 +18,7 @@ namespace remote {
 
     public:
       RelayBoard(Config&);
+      void ReadConfig();
       void ActivateChannel1();
       void ActivateChannel2();
       void ActivateChannel3();
